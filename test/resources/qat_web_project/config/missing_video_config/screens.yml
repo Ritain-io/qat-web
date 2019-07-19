@@ -1,0 +1,8 @@
+video_recording:
+  resolution:
+    width: 800
+    height: 600
+#  video:
+#    provider: ffmpeg
+#    codec: libx264
+#    frame_rate: 12

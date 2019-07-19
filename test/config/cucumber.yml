@@ -1,0 +1,7 @@
+default: >
+  --format pretty
+  --format html --out public/index.html
+  --format junit --out public/
+  --strict
+  --tags ~@wip
+  --tags ~@disabled

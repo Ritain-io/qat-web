@@ -1,0 +1,7 @@
+locators:
+  username:
+    xpath: //*[@id='username']
+  password:
+    xpath: //*[@id='password']
+  login_button:
+    xpath: //button[contains(text(), 'Login')]

@@ -1,0 +1,15 @@
+url: http://localhost:8090/example
+
+locators:
+  header:
+    xpath: //div/h1
+    wait: 2
+    visible: true
+
+  body_paragraphs:
+    xpath: //div/p
+    wait: 2
+
+  more_info_link:
+    xpath: //div/p/a
+    wait: 2

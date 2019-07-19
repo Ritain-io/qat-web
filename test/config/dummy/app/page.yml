@@ -1,0 +1,5 @@
+locators:
+  table_rows:
+    xpath: //*[@id='table_rows']
+  table_headers:
+    xpath: //*[@id='table_headers']
