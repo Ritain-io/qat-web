@@ -3,15 +3,19 @@ language: ruby
 rvm:
   - 2.5
 
-
 before_install:
+    #Geckodriver install:
   - wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
   - tar -xvzf geckodriver-v0.24.0-linux64.tar.gz
   - rm geckodriver-v0.24.0-linux64.tar.gz
   - chmod +x geckodriver
   - sudo cp geckodriver /usr/local/bin/
-#  - sudo apt-get install -y unzip xvfb libxi6 libgconf-2-4
-#  - sudo apt-get -y install google-chrome-stable
+    #Chrome install:
+  - sudo -curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add
+  - sudo echo "deb [arch=amd64]  http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
+  - sudo apt-get -y update
+  - sudo apt-get -y install google-chrome-stable
+    #ChromeDriver install:
   - wget https://chromedriver.storage.googleapis.com/76.0.3809.68/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip
   - sudo mv chromedriver /usr/bin/chromedriver
