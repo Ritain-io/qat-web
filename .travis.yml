@@ -11,10 +11,8 @@ before_install:
   - chmod +x geckodriver
   - sudo cp geckodriver /usr/local/bin/
     #Chrome install:
-  - sudo -curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add
-  - sudo echo "deb [arch=amd64]  http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
-  - sudo apt-get -y update
-  - sudo apt-get -y install google-chrome-stable
+  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  - sudo dpkg -i google-chrome-stable_current_amd64.deb
     #ChromeDriver install:
   - wget https://chromedriver.storage.googleapis.com/76.0.3809.68/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip
