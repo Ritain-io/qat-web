@@ -2,14 +2,14 @@
 
 Gem::Specification.new do |gem|
   gem.name        = 'qat-web'
-  gem.version     = '6.0.0'
+  gem.version     = '6.0.1'
   gem.summary     = %q{QAT-Web is a browser controller for Web testing}
   gem.description = <<-DESC
   QAT-Web is a browser controller for Web testing, with support for various browsers and webdrivers.
   Includes various classes for easier planning and implementation of web interactions, using the Page Objects Pattern.
   DESC
   gem.email    = 'qatoolkit@readinessit.com'
-  gem.homepage = 'https://gitlab.readinessit.com/qa-toolkit/qat-web'
+  gem.homepage = 'https://github.com/readiness-it/qat-web'
 
   gem.authors = ['QAT']
   gem.license = 'GPL-3.0'
