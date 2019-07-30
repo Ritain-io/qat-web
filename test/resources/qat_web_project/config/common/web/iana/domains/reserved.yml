@@ -1,0 +1,6 @@
+url: http://localhost:8090/iana/domains/reserved
+
+locators:
+  header:
+    xpath: //div[@id='main_right']/h1
+    wait: 2

@@ -1,0 +1,12 @@
+#!/usr/bin/env rake
+#encoding: utf-8
+
+require 'cucumber'
+require 'cucumber/rake/task'
+require 'rake/testtask'
+
+task 'test' do
+  rm_rf 'public'
+  mkdir_p 'public'
+  Cucumber::Rake::Task.new("test").runner.run
+end
