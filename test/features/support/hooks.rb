@@ -25,7 +25,7 @@ end
 
 Around '@force_headless' do |_, block|
   old_qat_display = ENV['QAT_DISPLAY']
-  log.info 'Forcing to use a headless screen (maybe due to video recording tests!).'
+  log.info 'Forcing to use a headless screen.'
   ENV['QAT_DISPLAY'] = ''
 
   block.call
