@@ -35,11 +35,6 @@ module QAT::Web
       #@since 1.0.0
       attr_reader :xvfb
 
-      # Video recording configurations exception
-      # @since 2.0.1
-      class VideoRecordingConfigError < StandardError
-      end
-
       #Create a new screen.
       #@param name [String] screen name
       #@param options [Hash] start options
@@ -57,10 +52,6 @@ module QAT::Web
       #@return [Headless] Xvfb instance
       #@since 1.0.0
       def start
-        if %w(always success failure).include?(ENV['QAT_WEB_VIDEO_MODE']) and (@options[:video].nil? or @options[:video].empty?)
-          raise(VideoRecordingConfigError, "Video recording configuration is missing!")
-        end
-
         @xvfb = Headless.new @options
         @xvfb.start
         log.info "Xvfb #{name} screen started"
