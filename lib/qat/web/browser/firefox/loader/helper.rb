@@ -32,15 +32,21 @@ module QAT::Web
               loaded_driver.browser
             end
 
-            if loaded_screen.xvfb
-              loaded_driver.resize_window_to(loaded_driver.current_window_handle, loaded_screen.width, loaded_screen.height)
-            else
-              loaded_driver.maximize_window(loaded_driver.current_window_handle) if loaded_driver.respond_to? :maximize_window
-            end
+            maximize_browser_window
 
             require_hooks(hooks)
 
             loaded_driver
+          end
+        end
+
+        private
+
+        def maximize_browser_window
+          if loaded_screen.xvfb
+            loaded_driver.resize_window_to(loaded_driver.current_window_handle, loaded_screen.width, loaded_screen.height)
+          else
+            loaded_driver.maximize_window(loaded_driver.current_window_handle) if loaded_driver.respond_to? :maximize_window
           end
         end
       end
