@@ -1,8 +1,10 @@
 #!/usr/bin/env rake
 #encoding: utf-8
 
-require 'qat/devel/tasks'
 require 'erb'
+require 'qat/devel/tasks'
+
+task :default
 
 namespace :qat do
   namespace :web do
