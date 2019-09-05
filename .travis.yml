@@ -1,7 +1,7 @@
 ---
-rvm:
-  - 2.5
-  - 2.6
+language: ruby
+
+rvm: 2.6
 
 before_install:
   #Geckodriver install:
@@ -26,36 +26,33 @@ stages:
 jobs:
   include:
     - stage: test
-      rvm: 2.6
       name: "version"
       script: ruby -e "require './lib/qat/web/version'; raise StandardError.new unless Gem::Specification::load('qat-web.gemspec').version.to_s == QAT::Web::VERSION"
       if: tag IS blank
 
     - name: "documentation"
-      rvm: 2.6
       script: bundle exec rake qat:devel:validate_yard_doc
       if: tag IS blank
 
     - name: "static"
-      rvm: 2.6
       script: bundle exec rake qat:devel:static_analysis:validation
       if: tag IS blank
 
-    - name: "unit tests"
-      rvm:
-        - 2.5
-        - 2.6
+    - name: "ruby 2.5 unit tests"
+        rvm: 2.5
+      script: bundle exec rake qat:devel:tests:run
+      if: tag IS blank
+
+    - name: "ruby 2.6 unit tests"
       script: bundle exec rake qat:devel:tests:run
       if: tag IS blank
 
     - name: "gem build"
-      rvm: 2.6
       script: gem build *.gemspec
       if: tag IS blank
 
     - stage: release
       name: "gem release"
-      rvm: 2.6
       script: echo "Deploying to rubygems.org ..."
       deploy:
         provider: rubygems
