@@ -155,7 +155,7 @@ QAT_DISPLAY: none
 
 # Documentation
 
-- [API documentation](https://readiness-it.github.io/qat-web/doc/index.html)
+- [API documentation](https://readiness-it.github.io/qat-web/)
 
 ## Capybara
 

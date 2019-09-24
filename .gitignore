@@ -23,6 +23,7 @@ build/
 ## Documentation cache and generated files:
 /.yardoc/
 /_yardoc/
+/doc/
 /rdoc/
 /test/coverage/
 
