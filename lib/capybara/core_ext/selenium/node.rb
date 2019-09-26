@@ -12,7 +12,7 @@ class Capybara::Selenium::Node < Capybara::Driver::Node
     driver.execute_script(script, native)
   end
 
-  # Validates if the element on the displayed part of the page (screen!)
+  # Validates if the element on the displayed part of the pages (screen!)
   #@return [Boolean]
   def on_screen?(fully)
     raise ArgumentError, 'on_screen argument should be true or false' unless [true, false].include?(fully)
@@ -36,7 +36,7 @@ class Capybara::Selenium::Node < Capybara::Driver::Node
     on_screen_x and on_screen_y
   end
 
-  # Returns the element absolute location on the page
+  # Returns the element absolute location on the pages
   #@return [Selenium::WebDriver::Point]
   def location
     native.location
@@ -48,25 +48,25 @@ class Capybara::Selenium::Node < Capybara::Driver::Node
     native.size
   end
 
-  # Returns the element X location on the page
+  # Returns the element X location on the pages
   #@return Integer
   def x_origin
     @x_origin ||= (location.x).to_i
   end
 
-  # Returns the end of the X element location on the page
+  # Returns the end of the X element location on the pages
   #@return Integer
   def x_end
     @x_end ||= (x_origin + size.width).to_i
   end
 
-  # Returns the element Y location on the page
+  # Returns the element Y location on the pages
   #@return Integer
   def y_origin
     @y_origin ||= (location.y).to_i
   end
 
-  # Returns the end of the Y element location on the page
+  # Returns the end of the Y element location on the pages
   #@return Integer
   def y_end
     @y_end ||= (y_origin + size.height).to_i

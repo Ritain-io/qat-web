@@ -8,38 +8,6 @@ Feature: some feature
     Given true
 
   @test#4 @dummy_test
-  Scenario: true
-    When true
-    Then true
-
-  @test#5 @dummy_test
-  Scenario Outline: Many trues
-    When <true>
-    Then <true>
-  Examples:
-    | true |
-    | true |
-    | true |
-    | true |
-    | true |
-
-  @test#6 @dummy_test
-  Scenario: Some other trueness
-    When true
-    Then true
-
-  @test#7 @dummy_test
-  Scenario Outline: Regretion outline
-    When <true>
-    Then <true>
-  Examples:
-    | true |
-    | true |
-    | true |
-    | true |
-    | true |
-
-  @test#8 @dummy_test
-  Scenario: normal regretion
-    When true
-    Then true
+  Scenario: Navigate to google page
+    When I navigate to home page
+    Then I can interact with home page

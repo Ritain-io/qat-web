@@ -2,9 +2,9 @@ require_relative 'page'
 require_relative 'blank_page'
 require 'qat/web/page_manager'
 
-module MODULO_NAME::Web
+module ProjectName::Web
   class PageManager < QAT::Web::PageManager
-    manages YOURROJECT::Web::Page
-    initial_page YOURROJECT::Web::BlankPage
+    manages ProjectName::Web::Page
+    initial_page ProjectName::Web::BlankPage
   end
 end
