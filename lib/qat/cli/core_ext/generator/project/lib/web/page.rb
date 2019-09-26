@@ -5,9 +5,11 @@ require 'qat/web/page'
 require 'qat/web/finders'
 require 'active_support/core_ext/hash/indifferent_access'
 
-
+#Project name Module
 module ProjectName
+  #Project name Module
   module Web
+    #Project name Module
     class Page < QAT::Web::Page
       include Capybara::DSL
       include QAT::Logger

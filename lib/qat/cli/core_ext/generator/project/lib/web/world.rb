@@ -6,10 +6,13 @@ require_relative 'remote_driver'
 QAT::Web::Browser::AutoLoad.load_browsers!
 QAT::Web::Screen::AutoLoad.load_screens!
 
+#Project name Module
 module ProjectName
+  #Project name Module
   module Web
+    #Project name Module
     module World
-
+      #Initialise browser
       def browser
         unless @browser
           QAT::Web::Browser::Factory.for :remote_firefox

@@ -5,7 +5,8 @@ require 'qat/cli'
 # require 'fileutils'
 # require 'time'
 
-
+#New project generator
+#@since 6.0.4
 class QAT::CLI::Main
   #include QAT::CLI::Generator
 
@@ -13,7 +14,7 @@ class QAT::CLI::Main
     @argv = ['-h'] if @argv.empty?
 
     opts = OptionParser.new do |parser|
-      parser.banner = 'Usage: qat-web [Options]'
+      parser.banner = 'Usage: qat_web [Options]'
       parser.separator 'Options'
 
       project_options(parser)

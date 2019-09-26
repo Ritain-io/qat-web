@@ -1,7 +1,10 @@
 require_relative '../web/page'
 
+#Project name Module
 module ProjectName
+  #Page Object Pages
   module Pages
+    #Home page
     class Home < ProjectName::Web::Page
       include QAT::Logger
 
@@ -15,12 +18,13 @@ module ProjectName
         log.info "Loaded home pages with URL: #{current_url}"
       end
 
+      #Introduce text on search box
       def input_search search_text
         locator_name_example.set search_text
       end
 
       private
-
+      #Exception class error
       class HomePageNotLoaded < QAT::Web::Error
       end
     end
