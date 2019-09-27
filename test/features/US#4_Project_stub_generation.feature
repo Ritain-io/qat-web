@@ -7,7 +7,7 @@ Feature: Issue #4: CLI for project control: Project stub generation
 
   @test#135
   Scenario Outline: Create a new project
-    When I run `qat_web <command> new_project`
+    When I run `qat <command> new_project -a web`
     Then the exit status should be 0
     And a directory named "new_project" should exist
     Examples:
@@ -17,13 +17,13 @@ Feature: Issue #4: CLI for project control: Project stub generation
 
   @test#136
   Scenario: Create a new project without project name
-    When I run `qat_web -n`
+    When I run `qat -n -a web`
     Then the exit status should be 1
     And the stderr should contain exactly "Error: No project name given"
 
   @test#137
   Scenario: Create a new project that already exists
     Given a directory named "my_project"
-    When I run `qat_web -n my_project`
+    When I run `qat -n my_project -a web`
     Then the exit status should be 1
     And the stderr should contain exactly "Error: The project 'my_project' already exists"

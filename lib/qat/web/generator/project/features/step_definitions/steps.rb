@@ -1,7 +1,3 @@
-Given /^true$/ do
-  assert true
-end
-
 When(/^I navigate to home page$/) do
   browser.navigate_home!
 end

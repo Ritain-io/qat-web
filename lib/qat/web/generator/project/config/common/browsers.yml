@@ -1,0 +1,5 @@
+firefox:
+  browser: firefox
+  screen: screen_1080p
+  properties:
+    geo.enabled: false

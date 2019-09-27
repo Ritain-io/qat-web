@@ -1,14 +1,14 @@
-require_relative '../web/page'
+require_relative 'base'
 
 #Project name Module
 module ProjectName
   #Page Object Pages
   module Pages
     #Home page
-    class Home < ProjectName::Web::Page
+    class Home < ProjectName::Web::Pages::Base
       include QAT::Logger
 
-      elements_config QAT.configuration.dig(:web, :home)
+      elements_config QAT.configuration.dig(:qat, :web, :home)
 
       web_elements :locator_name_example
 

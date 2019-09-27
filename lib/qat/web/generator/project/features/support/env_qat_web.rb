@@ -5,7 +5,6 @@
 require 'selenium-webdriver'
 require 'qat/cucumber'
 require 'qat/configuration'
-require 'qat/reporter/times'
 require 'qat/web'
 require 'qat/web/cucumber'
 require_relative '../../lib/web/world'

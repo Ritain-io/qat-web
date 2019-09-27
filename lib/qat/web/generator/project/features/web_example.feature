@@ -4,8 +4,6 @@ Feature: some feature
   As someone
   I want to specify scenarios
 
-  Background: Some option precondition
-    Given true
 
   @test#4 @dummy_test
   Scenario: Navigate to google page
