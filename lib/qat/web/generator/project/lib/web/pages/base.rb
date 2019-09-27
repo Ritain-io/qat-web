@@ -6,10 +6,11 @@ require 'qat/web/finders'
 
 #Project name Module
 module ProjectName
-  #Project name Module
+  #Web name Module
   module Web
+    #Page name Module
     module Pages
-    #Project name Module
+    #Class base
     class Base < QAT::Web::Pages
       include Capybara::DSL
       include QAT::Logger

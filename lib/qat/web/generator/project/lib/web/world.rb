@@ -5,9 +5,9 @@ QAT::Web::Screen::AutoLoad.load_screens!
 
 #Project name Module
 module ProjectName
-  #Project name Module
+  #Web name Module
   module Web
-    #Project name Module
+    #World name Module
     module World
       #Initialise browser
       def browser
