@@ -10,18 +10,18 @@ module ProjectName
   module Web
     #Page name Module
     module Pages
-    #Class base
-    class Base < QAT::Web::Pages
-      include Capybara::DSL
-      include QAT::Logger
-      include QAT::Web::Finders
+      #Class base
+      class Base < QAT::Web::Page
+        include Capybara::DSL
+        include QAT::Logger
+        include QAT::Web::Finders
 
-      # Action to navigate to your home page
-      action :navigate_home!, returns: [ProjectName::Web::Pages::Base] do
-        visit 'https://www.google.com'
-        ProjectName::Pages::Home.new
+        # Action to navigate to your home page
+        action :navigate_home!, returns: [ProjectName::Web::Pages::Base] do
+          visit 'https://www.google.com'
+          ProjectName::Web::Pages::Home.new
+        end
       end
     end
-      end
   end
 end
