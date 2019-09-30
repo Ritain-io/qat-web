@@ -20,8 +20,6 @@ Gem::Specification.new do |gem|
 
   gem.files = Dir.glob('{lib}/**/*')
 
-  gem.executables.push('qat_web')
-
   gem.required_ruby_version = '~> 2.4'
 
   # Development dependencies
