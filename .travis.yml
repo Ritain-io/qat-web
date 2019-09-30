@@ -11,8 +11,9 @@ before_install:
   - chmod +x geckodriver
   - sudo cp geckodriver /usr/local/bin/
   #Chrome install:
-  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  - sudo dpkg -i google-chrome-stable_current_amd64.deb
+  #- wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb #Issue compatibility with ChromeDriver versions
+  - wget https://www.slimjet.com/chrome/download-chrome.php?file=files%2F76.0.3809.100%2Fgoogle-chrome-stable_current_amd64.deb
+  - sudo dpkg -i *google-chrome-stable_current_amd64.deb
   #ChromeDriver install:
   - wget https://chromedriver.storage.googleapis.com/78.0.3904.11/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip
