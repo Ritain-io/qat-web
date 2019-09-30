@@ -1,0 +1,10 @@
+screen_1080p: &screen_1080p
+  resolution:
+    width: 1920
+    height: 1080
+  video:
+    provider: ffmpeg
+    log_file_path: <%= File.join 'public', 'video.log' %>
+    codec: libx264
+    frame_rate: 12
+    extra: -pix_fmt yuvj420p

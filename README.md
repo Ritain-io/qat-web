@@ -29,6 +29,13 @@ Or install it yourself as:
 
 ## Some Usage Examples:
 
+Setup qat project with web structure:
+```bash
+qat -n new_project -a web
+qat --new new_project -add web
+qat --new new_project -add web --verbose
+``` 
+
 Screen Capture:
 ````ruby
 QAT::Web::Browser::Screenshot.take_screenshot, 'image/png', 'Screenshot'

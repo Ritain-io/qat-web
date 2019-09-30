@@ -1,0 +1,4 @@
+locators:
+  locator_name_example:
+    xpath: .//a[@title='selector_example']
+    wait: timeouts.browser.medium
