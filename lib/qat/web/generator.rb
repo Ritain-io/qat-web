@@ -17,7 +17,7 @@ module QAT::Web
 
 
 # QAT-Web is a browser controller for Web testing (https://github.com/readiness-it/qat-web)
-gem 'qat-web', '~> 6.0'
+gem 'qat-web', '~> 6.1'
 
 # Ruby headless display interface (http://leonid.shevtsov.me/en/headless)
 gem 'headless' #optional
