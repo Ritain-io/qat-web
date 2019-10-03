@@ -55,7 +55,7 @@ module QAT::Web
             raise e
           end
         end
-        Selenium::WebDriver.const_get(browser.capitalize)::Profile.new
+        Selenium::WebDriver.const_get(browser.capitalize)::Options.new
       end
 
       def set_profile(profile, properties)
