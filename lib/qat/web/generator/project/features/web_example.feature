@@ -5,7 +5,7 @@ Feature: some feature
   I want to specify scenarios
 
 
-  @test#4 @dummy_test
+  @test#10 @dummy_test
   Scenario: Navigate to google page
     When I navigate to home page
     Then I can interact with home page

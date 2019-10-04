@@ -29,11 +29,17 @@ Or install it yourself as:
 
 ## Some Usage Examples:
 
+Add to a qat project the web structure:
+```bash
+qat -a web
+qat --add web
+``` 
+
 Setup qat project with web structure:
 ```bash
 qat -n new_project -a web
-qat --new new_project -add web
-qat --new new_project -add web --verbose
+qat --new new_project --add web
+qat --new new_project --add web --verbose
 ``` 
 
 Screen Capture:
@@ -90,7 +96,7 @@ url: http://example.com
 locators:
   element_name:
     xpath: //div/h1 #DOM path to required element
-    wait: 2 #Waits until 5 seconds for element to be present
+    wait: 5 #Waits until 5 seconds for element to be present
     visible: true #Indicates if element is visble or not in the window
     
 ````
