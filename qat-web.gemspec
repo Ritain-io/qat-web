@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name        = 'qat-web'
-  gem.version     = '6.1.0'
+  gem.version     = '6.1.1'
   gem.summary     = %q{QAT-Web is a browser controller for Web testing}
   gem.description = <<-DESC
   QAT-Web is a browser controller for Web testing, with support for various browsers and webdrivers.

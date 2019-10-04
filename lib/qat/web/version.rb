@@ -4,6 +4,6 @@ module QAT
 #@since 1.0.0
   module Web
     # Represents QAT-Web's version
-    VERSION = '6.1.0'
+    VERSION = '6.1.1'
   end
 end
