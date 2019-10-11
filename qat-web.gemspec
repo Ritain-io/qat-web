@@ -30,7 +30,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'syntax', '~> 1.2'
   gem.add_development_dependency 'httparty', '~> 0.14.0'
   gem.add_development_dependency 'selenium-webdriver'
-
+  gem.add_development_dependency 'gemnasium-parser'
   # GEM dependencies
   gem.add_dependency 'qat-logger', '~> 6.0'
   gem.add_dependency 'little-plugger', '~> 1.1', '>= 1.1.4'
