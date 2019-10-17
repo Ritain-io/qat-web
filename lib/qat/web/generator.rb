@@ -17,28 +17,44 @@ module QAT::Web
       # Read GemFile of new project
       path = File.join(Dir.pwd, 'Gemfile')
       gemfileProject = File.read(path)
+      #novo codigo aqui
       gemfile = Gemnasium::Parser.gemfile(gemfileProject)
-      gemfiledependencias = gemfile.dependencies
-      has_qat_web = false
-      gemfiledependencias.each do |x|
-        has_qat_web = true if x.name.eql? 'qat-web'
+      version = QAT::Web::VERSION
+      gem = 'qat-web'
+
+      add_gem_dependency gemfile, gem, version, opts
+    end
+
+    def add_gem_dependency gemfile, gem, version = nil, opts
+      b = gemfile.dependencies # unless b.find{|i| i.name == 'qat-cucumber'}
+      c = b.find{|i| i.name == 'qat-web'}
+      puts c
+
+      if c
+        add_gems_gemfile opts
+      else
+        a = "gem '#{gem}#{version ? "', '>= #{version}'" : ''}\n"
+        add_gem_qat_web_gemfile a, opts
       end
+    end
 
-      # ADD gem to GemFile depending on what is in the GemFile of project
-
-      if has_qat_web == false
-        cp_r ::File.join(::File.dirname(__FILE__), 'generator', 'project', '.'), Dir.pwd, opts
-        ::File.write('Gemfile', <<-GEMFILE, mode: 'a')
-      
-
-# QAT-Web is a browser controller for Web testing (https://github.com/readiness-it/qat-web)
-gem 'qat-web', '~> 6.1'
-        GEMFILE
-      end
+    def add_gem_qat_web_gemfile a, opts
 
       cp_r ::File.join(::File.dirname(__FILE__), 'generator', 'project', '.'), Dir.pwd, opts
       ::File.write('Gemfile', <<-GEMFILE, mode: 'a')
-      
+
+
+#{a}
+      GEMFILE
+      add_gems_gemfile opts
+    end
+
+    def add_gems_gemfile opts
+
+      cp_r ::File.join(::File.dirname(__FILE__), 'generator', 'project', '.'), Dir.pwd, opts
+      ::File.write('Gemfile', <<-GEMFILE, mode: 'a')
+
+
 
 # Ruby headless display interface (http://leonid.shevtsov.me/en/headless)
 gem 'headless' #optional
@@ -48,6 +64,6 @@ gem 'selenium-webdriver' #optional
       GEMFILE
     end
 
-    module_function :add_module
+    module_function :add_module, :add_gem_qat_web_gemfile, :add_gems_gemfile, :add_gem_dependency
   end
 end
