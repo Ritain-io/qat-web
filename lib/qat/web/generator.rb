@@ -42,8 +42,9 @@ module QAT::Web
 
       cp_r ::File.join(::File.dirname(__FILE__), 'generator', 'project', '.'), Dir.pwd, opts
       ::File.write('Gemfile', <<-GEMFILE, mode: 'a')
+      
 
-
+# QAT-Web is a browser controller for Web testing (http://gitlab.readinessit.com:8083/qa-toolkit/qat-web)
 #{a}
       GEMFILE
       add_gems_gemfile opts
@@ -53,8 +54,6 @@ module QAT::Web
 
       cp_r ::File.join(::File.dirname(__FILE__), 'generator', 'project', '.'), Dir.pwd, opts
       ::File.write('Gemfile', <<-GEMFILE, mode: 'a')
-
-
 
 # Ruby headless display interface (http://leonid.shevtsov.me/en/headless)
 gem 'headless' #optional
