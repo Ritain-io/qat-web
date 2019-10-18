@@ -13,56 +13,32 @@ module QAT::Web
 
       stdout.puts "Adding files to project" if opts[:verbose]
 
-
+      cp_r ::File.join(::File.dirname(__FILE__), 'generator', 'project', '.'), Dir.pwd, opts
       # Read GemFile of new project
       path = File.join(Dir.pwd, 'Gemfile')
-      gemfileProject = File.read(path)
-      #novo codigo aqui
-      gemfile = Gemnasium::Parser.gemfile(gemfileProject)
-      version = QAT::Web::VERSION
-      gem = 'qat-web'
-
-      add_gem_dependency gemfile, gem, version, opts
+      add_gem_dependency path, 'qat-web', verbose: opts[:verbose], version: QAT::Web::VERSION
+      add_gem_dependency path, 'headless', verbose: opts[:verbose]
+      add_gem_dependency path, 'selenium-webdriver', verbose: opts[:verbose]
     end
 
-    def add_gem_dependency gemfile, gem, version = nil, opts
-      b = gemfile.dependencies # unless b.find{|i| i.name == 'qat-cucumber'}
-      c = b.find{|i| i.name == 'qat-web'}
-      puts c
+    def add_gem_dependency (gemfile_path, gem, opts = {})
+      gemfile = Gemnasium::Parser.gemfile(gemfile_path)
+      dependencies = gemfile.dependencies
+      found_gem = dependencies.find {|i| i.name == gem}
+      version = opts[:version]
+      puts "gem #{gem} found? #{!found_gem.nil?}" if opts[:verbose]
 
-      if c
-        add_gems_gemfile opts
-      else
-        a = "gem '#{gem}#{version ? "', '>= #{version}'" : ''}\n"
-        add_gem_qat_web_gemfile a, opts
-      end
+      return if found_gem
+      line = "\n\ngem '#{gem}'#{version ? ", '>= #{version}'" : ''}"
+      puts "adding dependencies #{gem} to Gemfile" if opts[:verbose]
+      write_to_gemfile gemfile_path, line
     end
 
-    def add_gem_qat_web_gemfile a, opts
 
-      cp_r ::File.join(::File.dirname(__FILE__), 'generator', 'project', '.'), Dir.pwd, opts
-      ::File.write('Gemfile', <<-GEMFILE, mode: 'a')
-      
-
-# QAT-Web is a browser controller for Web testing (http://gitlab.readinessit.com:8083/qa-toolkit/qat-web)
-#{a}
-      GEMFILE
-      add_gems_gemfile opts
+    def write_to_gemfile filename, line
+      ::File.write(filename, line, mode: 'a')
     end
 
-    def add_gems_gemfile opts
-
-      cp_r ::File.join(::File.dirname(__FILE__), 'generator', 'project', '.'), Dir.pwd, opts
-      ::File.write('Gemfile', <<-GEMFILE, mode: 'a')
-
-# Ruby headless display interface (http://leonid.shevtsov.me/en/headless)
-gem 'headless' #optional
-
-# The next generation developer focused tool for automated testing of webapps (https://github.com/seleniumhq/selenium)
-gem 'selenium-webdriver' #optional
-      GEMFILE
-    end
-
-    module_function :add_module, :add_gem_qat_web_gemfile, :add_gems_gemfile, :add_gem_dependency
+    module_function :add_module, :write_to_gemfile, :add_gem_dependency
   end
 end
