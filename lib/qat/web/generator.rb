@@ -13,22 +13,37 @@ module QAT::Web
 
       stdout.puts "Adding files to project" if opts[:verbose]
 
-      cp_r ::File.join(::File.dirname(__FILE__), 'generator', 'project', '.'), Dir.pwd, opts
+
       # Read GemFile of new project
       path = File.join(Dir.pwd, 'Gemfile')
-      add_gem_dependency path, 'qat-web', verbose: opts[:verbose], version: QAT::Web::VERSION
-      add_gem_dependency path, 'headless', verbose: opts[:verbose]
-      add_gem_dependency path, 'selenium-webdriver', verbose: opts[:verbose]
+      has_gem_QATWEB = verify_gems path, 'qat-web', verbose: opts[:verbose]
+      puts has_gem_QATWEB
+      if has_gem_QATWEB
+        puts "Module already integrated"
+      else
+        add_gem_dependency path, 'qat-web', verbose: opts[:verbose], version: QAT::Web::VERSION
+        add_gem_dependency path, 'headless', verbose: opts[:verbose]
+        add_gem_dependency path, 'selenium-webdriver', verbose: opts[:verbose]
+        cp_r ::File.join(::File.dirname(__FILE__), 'generator', 'project', '.'), Dir.pwd, opts
+      end
+    end
+
+    def verify_gems (gemfile_path, gem, opts = {})
+      file = File.read(gemfile_path)
+      gemfile = Gemnasium::Parser.gemfile(file)
+      dependencies = gemfile.dependencies
+      found_gem = dependencies.find {|i| i.name == gem}
+      puts found_gem
+      puts "gem #{gem} found? #{!found_gem.nil?}" if opts[:verbose]
+      if found_gem
+        return true
+      else
+        return false
+      end
     end
 
     def add_gem_dependency (gemfile_path, gem, opts = {})
-      gemfile = Gemnasium::Parser.gemfile(gemfile_path)
-      dependencies = gemfile.dependencies
-      found_gem = dependencies.find {|i| i.name == gem}
       version = opts[:version]
-      puts "gem #{gem} found? #{!found_gem.nil?}" if opts[:verbose]
-
-      return if found_gem
       line = "\n\ngem '#{gem}'#{version ? ", '>= #{version}'" : ''}"
       puts "adding dependencies #{gem} to Gemfile" if opts[:verbose]
       write_to_gemfile gemfile_path, line
@@ -39,6 +54,6 @@ module QAT::Web
       ::File.write(filename, line, mode: 'a')
     end
 
-    module_function :add_module, :write_to_gemfile, :add_gem_dependency
+    module_function :add_module, :write_to_gemfile, :add_gem_dependency, :verify_gems
   end
 end
