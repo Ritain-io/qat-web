@@ -1,32 +1,57 @@
 require_relative '../../../lib/qat/web/version'
 require 'fileutils'
+require 'gemnasium/parser'
+
 module QAT::Web
   #Module for the various generators used in the CLI utility
   #@since 6.1.0
   module Generator
     include FileUtils
     extend FileUtils
-
     # Adds a files QAT Web module to the current project
     def add_module(stdout, opts)
-
       stdout.puts "Adding files to project" if opts[:verbose]
-      cp_r ::File.join(::File.dirname(__FILE__), 'generator', 'project', '.'), Dir.pwd, opts
-      ::File.write('Gemfile', <<-GEMFILE, mode: 'a')
-      
 
-
-# QAT-Web is a browser controller for Web testing (https://github.com/readiness-it/qat-web)
-gem 'qat-web', '~> 6.1'
-
-# Ruby headless display interface (http://leonid.shevtsov.me/en/headless)
-gem 'headless' #optional
-
-# The next generation developer focused tool for automated testing of webapps (https://github.com/seleniumhq/selenium)
-gem 'selenium-webdriver' #optional
-      GEMFILE
+      # Read GemFile of new project
+      path = File.join(Dir.pwd, 'Gemfile')
+      has_qatweb = verify_gems path, 'qat-web', verbose: opts[:verbose]
+      if has_qatweb
+        puts "Module already integrated"
+      else
+        add_gem_dependency path, 'qat-web', verbose: opts[:verbose], version: QAT::Web::VERSION
+        add_gem_dependency path, 'headless', verbose: opts[:verbose]
+        add_gem_dependency path, 'selenium-webdriver', verbose: opts[:verbose]
+        cp_r ::File.join(::File.dirname(__FILE__), 'generator', 'project', '.'), Dir.pwd, opts
+      end
     end
 
-    module_function :add_module
+    def verify_gems (gemfile_path, gem, opts = {})
+      file = File.read(gemfile_path)
+      gemfile = Gemnasium::Parser.gemfile(file)
+      dependencies = gemfile.dependencies
+      found_gem = dependencies.find {|i| i.name == gem}
+      puts "Found gem: #{found_gem}"
+      puts "gem #{gem} found? #{!found_gem.nil?}" if opts[:verbose]
+
+      if found_gem
+        return true
+      else
+        return false
+      end
+    end
+
+    def add_gem_dependency (gemfile_path, gem, opts = {})
+      version = opts[:version]
+      line = "\n\ngem '#{gem}'#{version ? ", '>= #{version}'" : ''}"
+      puts "adding dependencies #{gem} to Gemfile" if opts[:verbose]
+      write_to_gemfile gemfile_path, line
+    end
+
+
+    def write_to_gemfile filename, line
+      ::File.write(filename, line, mode: 'a')
+    end
+
+    module_function :add_module, :write_to_gemfile, :add_gem_dependency, :verify_gems
   end
 end
