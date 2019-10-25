@@ -10,15 +10,12 @@ module QAT::Web
     extend FileUtils
     # Adds a files QAT Web module to the current project
     def add_module(stdout, opts)
-
       stdout.puts "Adding files to project" if opts[:verbose]
-
 
       # Read GemFile of new project
       path = File.join(Dir.pwd, 'Gemfile')
-      has_gem_QATWEB = verify_gems path, 'qat-web', verbose: opts[:verbose]
-      puts has_gem_QATWEB
-      if has_gem_QATWEB
+      has_qatweb = verify_gems path, 'qat-web', verbose: opts[:verbose]
+      if has_qatweb
         puts "Module already integrated"
       else
         add_gem_dependency path, 'qat-web', verbose: opts[:verbose], version: QAT::Web::VERSION
@@ -33,8 +30,9 @@ module QAT::Web
       gemfile = Gemnasium::Parser.gemfile(file)
       dependencies = gemfile.dependencies
       found_gem = dependencies.find {|i| i.name == gem}
-      puts found_gem
+      puts "Found gem: #{found_gem}"
       puts "gem #{gem} found? #{!found_gem.nil?}" if opts[:verbose]
+
       if found_gem
         return true
       else
