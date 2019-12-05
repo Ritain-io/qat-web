@@ -44,12 +44,12 @@ qat --new new_project --add web --verbose
 
 Screen Capture:
 ````ruby
-QAT::Web::Browser::Screenshot.take_screenshot, 'image/png', 'Screenshot'
+QAT::Web::Browser::Screenshot.take_screenshot
 ````
 
 Generate HTML Dump:
 ````ruby
-QAT::Web::Browser::HTMLDump.take_html_dump, 'text/plain', 'HTML dump'
+QAT::Web::Browser::HTMLDump.take_html_dump
 ````
 
 Create Browser Display: 
