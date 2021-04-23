@@ -100,15 +100,15 @@ And /^there is( not)? an? "([^"]*)" file attached to the HTML report with label 
   report = ::File.open(::File.join 'tmp', 'aruba', 'project', 'public', 'index.html') { |f| Nokogiri::HTML(f) }
   found  = case type
            when 'png'
-             report.at_xpath("//span[@class='embed']/a[text()='#{label}']/../img[contains(@src, '.#{type}')]")
+             report.xpath("//img[@alt='Embedded Image']")
            when 'html'
-             report.at_xpath("//span[@class='embed']/a[text()='#{label}'][contains(@href, '.#{type}')]")
+             report.xpath("//*[contains(text(),'<html>')]")
            else
              pending
            end
 
   if negative
-    refute found
+    assert_empty found
   else
     assert found
   end

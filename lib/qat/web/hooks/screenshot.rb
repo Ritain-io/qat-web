@@ -14,7 +14,7 @@ end
 After do |scenario|
   if scenario.failed?
     if QAT::Web::Exceptions::SCREENSHOT.any? { |exception| scenario.exception.kind_of?(exception) }
-      embed QAT::Web::Browser::Screenshot.take_screenshot, 'image/png', 'Screenshot'
+      attach QAT::Web::Browser::Screenshot.take_screenshot, 'image/png'
     end
   end
 end

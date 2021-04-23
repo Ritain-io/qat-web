@@ -19,9 +19,11 @@ module QAT::Web
       def take_html_dump(page=Capybara.current_session, path=html_dump_path)
         log.info { "Saving HTML dump to #{path}" }
         raise ArgumentError.new "File #{path} already exists! Choose another filename" if ::File.exists? path
-        path = page.save_page path
+        file = page.save_page path
+        file_read = File.open file
+        path = file_read.read
         log.info { "HTML dump available" }
-        ::File.basename(path)
+        path
       rescue Capybara::NotSupportedByDriverError
         log.warn { "Driver #{page.mode} does not support HTML dumps!" }
         return nil
@@ -30,6 +32,7 @@ module QAT::Web
       #Default HTML dump path. Can be set with {#html_dump_path=}.
       #@return [String] HTML dump path
       #@since 1.0.0
+
       def html_dump_path
         @html_dump_path || ::File.join('public', "browser_#{Time.new.strftime("%H%M%S%L")}.html")
       end

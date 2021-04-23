@@ -19,7 +19,9 @@ module QAT::Web
       def take_screenshot page=Capybara.current_session, path=screenshot_path
         log.info {"Saving screenshot to #{path}"}
         raise ArgumentError.new "File #{path} already exists! Choose another filename" if ::File.exists? path
-        path = page.save_screenshot path
+        dir = page.save_screenshot path
+        file = File.open dir
+        path = file.read
         log.info {"Screenshot available"}
         path
       rescue Capybara::NotSupportedByDriverError
