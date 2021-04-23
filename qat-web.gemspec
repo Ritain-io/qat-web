@@ -23,7 +23,7 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = '~> 2.5'
 
   # Development dependencies
-  gem.add_development_dependency 'qat-cucumber', '~> 7.0'
+  gem.add_development_dependency 'qat-cucumber', '~>7.0.3'
   gem.add_development_dependency 'qat-devel', '~> 8.0'
   gem.add_development_dependency 'headless', '~> 2.3', '>= 2.3.1'
   gem.add_development_dependency 'sinatra', '~> 1.4', '>= 1.4.6'
