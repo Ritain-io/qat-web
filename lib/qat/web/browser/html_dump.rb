@@ -17,16 +17,22 @@ module QAT::Web
       #@return [String/NilClass] File path to where the HTML dump file was saved or nil if the browser doesn't support HTML dumps
       #@since 1.0.0
       def take_html_dump(page=Capybara.current_session, path=html_dump_path)
-        log.info { "Saving HTML dump to #{path}" }
         raise ArgumentError.new "File #{path} already exists! Choose another filename" if ::File.exists? path
-        file = page.save_page path
-        file_read = File.open file
-        path = file_read.read
+        log.info { "Saving HTML dump to #{path}" }
+        path = read_html_dump path
         log.info { "HTML dump available" }
         path
       rescue Capybara::NotSupportedByDriverError
         log.warn { "Driver #{page.mode} does not support HTML dumps!" }
         return nil
+      end
+
+
+      ##Helper for reading file, in cucumber 6 this could be reverted to path directly
+      def read_html_dump dump_path
+        file = page.save_page dump_path
+        dump_path_read = File.open file
+        dump_path_read.read
       end
 
       #Default HTML dump path. Can be set with {#html_dump_path=}.
@@ -35,6 +41,10 @@ module QAT::Web
 
       def html_dump_path
         @html_dump_path || ::File.join('public', "browser_#{Time.new.strftime("%H%M%S%L")}.html")
+      end
+
+      def html_dump_filename
+        File.basename(@html_dump_path)
       end
 
       #Set new default HTML dump path.

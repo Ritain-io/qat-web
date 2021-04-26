@@ -86,7 +86,7 @@ Then /^I have a browser screenshot file(?: with name "([^"]*)")?$/ do |name|
   assert @screenshot_path, "Expected to have a saved screenshot path, but none was found!"
   #FIXMECUCUMBER 6
   #assert ::File.exists?(@screenshot_path), "Expected to have a saved screenshot path, but none was found!"
- # assert @screenshot_path.end_with? name, "Expected screenshot #{@screenshot_path} to have name #{name}" if name
+  # assert @screenshot_path.end_with? name, "Expected screenshot #{@screenshot_path} to have name #{name}" if name
 end
 
 And /^I set screenshot default name to "([^"]*)"$/ do |path|
@@ -100,12 +100,12 @@ end
 And /^there is( not)? an? "([^"]*)" file attached to the HTML report with label "([^"]*)"$/ do |negative, type, label|
   report = ::File.open(::File.join 'tmp', 'aruba', 'project', 'public', 'index.html') { |f| Nokogiri::HTML(f) }
   found  = case type
-           when 'png'
-             report.xpath("//img[@alt='Embedded Image']")
-           when 'html'
-             report.xpath("//*[contains(text(),'<html>')]")
-           else
-             pending
+             when 'png'
+               report.xpath("//img[@alt='Embedded Image']")
+             when 'html'
+               report.xpath("//*[contains(text(),'<html>')]")
+             else
+               pending
            end
 
   if negative
@@ -117,8 +117,9 @@ end
 
 When /^I save a browser HTML dump$/ do
   begin
-    @error          = nil
-    @html_dump_path = QAT::Web::Browser::HTMLDump.take_html_dump
+    @error = nil
+    QAT::Web::Browser::HTMLDump.take_html_dump
+    @html_dump_path = QAT::Web::Browser::HTMLDump.html_dump_filename
   rescue => @error
   end
 end
@@ -142,12 +143,12 @@ And(/^the "([^"]*)" link with label "([^"]*)" is valid$/) do |type, label|
   aruba  = ::File.join 'tmp', 'aruba', 'project', 'public'
   report = ::File.open(::File.join aruba, 'index.html') { |f| Nokogiri::HTML(f) }
   src    = case type
-           when 'png'
-             report.at_xpath("//span[@class='embed']/a[text()='#{label}']/../img[contains(@src, '.#{type}')]")['src']
-           when 'html'
-             report.at_xpath("//span[@class='embed']/a[text()='#{label}'][contains(@href, '.#{type}')]")['href']
-           else
-             pending
+             when 'png'
+               report.at_xpath("//span[@class='embed']/a[text()='#{label}']/../img[contains(@src, '.#{type}')]")['src']
+             when 'html'
+               report.at_xpath("//span[@class='embed']/a[text()='#{label}'][contains(@href, '.#{type}')]")['href']
+             else
+               pending
            end
   assert ::File.file?(::File.join(aruba, src))
 end
