@@ -19,7 +19,7 @@ module QAT::Web
       def take_html_dump(page=Capybara.current_session, path=html_dump_path)
         raise ArgumentError.new "File #{path} already exists! Choose another filename" if ::File.exists? path
         log.info { "Saving HTML dump to #{path}" }
-        path = read_html_dump path
+        path = read_html_dump page ,path
         log.info { "HTML dump available" }
         path
       rescue Capybara::NotSupportedByDriverError
@@ -29,7 +29,7 @@ module QAT::Web
 
 
       ##Helper for reading file, in cucumber 6 this could be reverted to path directly
-      def read_html_dump dump_path
+      def read_html_dump page, dump_path
         file = page.save_page dump_path
         dump_path_read = File.open file
         dump_path_read.read

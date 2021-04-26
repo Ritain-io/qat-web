@@ -19,7 +19,7 @@ module QAT::Web
       def take_screenshot page = Capybara.current_session ,  path = screenshot_path
         log.info { "Saving screenshot to #{path}" }
         raise ArgumentError.new "File #{path} already exists! Choose another filename" if ::File.exists? path
-        path = read_screenshot_file path
+        path = read_screenshot_file page, path
         log.info { "Screenshot available" }
         path
       rescue Capybara::NotSupportedByDriverError
@@ -28,7 +28,7 @@ module QAT::Web
       end
 
       ##Helper for reading file, in cucumber 6 this could be reverted to path directly
-      def read_screenshot_file image_path
+      def read_screenshot_file page, image_path
         file            = page.save_page image_path
         image_path_read = File.open file
         image_path_read.read
