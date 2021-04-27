@@ -3,5 +3,5 @@ default: >
   --format html --out public/index.html
   --format junit --out public/
   --strict
-  --tags ~@wip
-  --tags ~@disabled
+  --tags 'not @wip'
+  --tags 'not @disabled'

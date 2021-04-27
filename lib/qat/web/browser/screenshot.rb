@@ -16,15 +16,27 @@ module QAT::Web
       #@param path [String] File path to save screenshot file
       #@return [String/NilClass]File path to where the screenshot file was saved or nil if the browser doesn't support screenshots
       #@since 1.0.0
-      def take_screenshot page=Capybara.current_session, path=screenshot_path
-        log.info {"Saving screenshot to #{path}"}
+      def take_screenshot page = Capybara.current_session ,  path = screenshot_path
+        log.info { "Saving screenshot to #{path}" }
         raise ArgumentError.new "File #{path} already exists! Choose another filename" if ::File.exists? path
-        path = page.save_screenshot path
-        log.info {"Screenshot available"}
+        path = read_screenshot_file page, path
+        log.info { "Screenshot available" }
         path
       rescue Capybara::NotSupportedByDriverError
         log.warn {"Driver #{page.mode} does not support screenshots!"}
         return nil
+      end
+
+      ##Helper for reading file, in cucumber 6 this could be reverted to path directly
+      def read_screenshot_file page, image_path
+        file            = page.save_page image_path
+        image_path_read = File.open file
+        image_path_read.read
+      end
+
+
+      def screenshot_filename
+        File.basename(@screenshot_path)
       end
 
       #Default screenshot path. Can be set with {#screenshot_path=}.

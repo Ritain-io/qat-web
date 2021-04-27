@@ -28,17 +28,17 @@ Feature: User Story #502: Capture webpage screenshot on test failure
     When I save a browser screenshot
     Then an "ArgumentError" exception is raised
 
-
-  @test#3
-  Scenario: Try to save a webpage screenshot using an unsupported driver
-    Given I have a "rack_test" driver
-    And I visit "/"
-    When I save a browser screenshot
-    Then no exception is raised
-    But no screenshot was saved
+### Deprecated exception not raised
+#  @test#3
+#  Scenario: Try to save a webpage screenshot using an unsupported driver
+#    Given I have a "rack_test" driver
+#    And I visit "/"
+#    When I save a browser screenshot
+#    Then no exception is raised
+#    But no screenshot was saved
 
   @test#4
-  Scenario: Embed saved screenshot in HTML Report when web error occurs
+  Scenario: Attached saved screenshot in HTML Report when web error occurs
     Given I copy the directory named "../../resources/cucumber_project" to "project"
     And I cd to "project"
     And I set the environment variables to:
@@ -50,11 +50,12 @@ Feature: User Story #502: Capture webpage screenshot on test failure
     And the stdout should contain "QAT::Web::Browser::Screenshot: Saving screenshot"
     And the stdout should contain "QAT::Web::Browser::Screenshot: Screenshot available"
     And there is a "png" file attached to the HTML report with label "Screenshot"
-    And the "png" link with label "Screenshot" is valid
+    ## link is not generated new attach
+   # And the "png" link with label "Screenshot" is valid
 
 
   @test#5
-  Scenario: Embedded Screenshot in HTML Report when occurs a QAT::Web::Error
+  Scenario: Attached Screenshot in HTML Report when occurs a QAT::Web::Error
     Given I copy the directory named "../../resources/cucumber_project" to "project"
     And I cd to "project"
     And I set the environment variables to:
@@ -66,11 +67,12 @@ Feature: User Story #502: Capture webpage screenshot on test failure
     And the stdout should contain "QAT::Web::Browser::Screenshot: Saving screenshot"
     And the stdout should contain "QAT::Web::Browser::Screenshot: Screenshot available"
     And there is a "png" file attached to the HTML report with label "Screenshot"
-    And the "png" link with label "Screenshot" is valid
+    ## link is not generated new attach
+    #And the "png" link with label "Screenshot" is valid
 
 
   @test#122
-  Scenario: Don't embed screenshot in HTML Report with normal error
+  Scenario: Don't attach screenshot in HTML Report with normal error
     Given I copy the directory named "../../resources/cucumber_project" to "project"
     And I cd to "project"
     And I set the environment variables to:

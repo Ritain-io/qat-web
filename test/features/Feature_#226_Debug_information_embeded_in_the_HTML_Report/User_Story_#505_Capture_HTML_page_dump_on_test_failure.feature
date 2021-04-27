@@ -47,7 +47,8 @@ Feature: User Story #505: Capture HTML page dump on test failure
     And the stdout should contain "QAT::Web::Browser::HTMLDump: Saving HTML dump"
     And the stdout should contain "QAT::Web::Browser::HTMLDump: HTML dump available"
     And there is a "html" file attached to the HTML report with label "HTML dump"
-    And the "html" link with label "HTML dump" is valid
+    ## link is not generated new attach
+    #And the "html" link with label "HTML dump" is valid
 
 
   @test#11
@@ -63,7 +64,8 @@ Feature: User Story #505: Capture HTML page dump on test failure
     And the stdout should contain "QAT::Web::Browser::HTMLDump: Saving HTML dump"
     And the stdout should contain "QAT::Web::Browser::HTMLDump: HTML dump available"
     And there is a "html" file attached to the HTML report with label "HTML dump"
-    And the "html" link with label "HTML dump" is valid
+     ## link is not generated new attach
+    #And the "html" link with label "HTML dump" is valid
 
 
   @test#6

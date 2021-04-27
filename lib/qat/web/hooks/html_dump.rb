@@ -15,7 +15,7 @@ After do |scenario|
   if scenario.failed?
     if QAT::Web::Exceptions::HTML_DUMP.any? { |exception| scenario.exception.kind_of?(exception) }
       # Embeds an existing HTML dump to Cucumber's HTML report
-      embed(QAT::Web::Browser::HTMLDump.take_html_dump, 'text/plain', 'HTML dump')
+      attach(QAT::Web::Browser::HTMLDump.take_html_dump, 'text/html')
     end
   end
 end
