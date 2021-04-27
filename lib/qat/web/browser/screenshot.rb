@@ -34,6 +34,11 @@ module QAT::Web
         image_path_read.read
       end
 
+
+      def screenshot_filename
+        File.basename(@screenshot_path)
+      end
+
       #Default screenshot path. Can be set with {#screenshot_path=}.
       #@return [String] Screenshot path
       #@since 1.0.0

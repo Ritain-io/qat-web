@@ -77,7 +77,8 @@ end
 
 When /^I save a browser screenshot$/ do
   begin
-    @screenshot_path = QAT::Web::Browser::Screenshot.take_screenshot
+     QAT::Web::Browser::Screenshot.take_screenshot
+     @screenshot_path = QAT::Web::Browser::Screenshot.screenshot_filename
   rescue => @error
   end
 end

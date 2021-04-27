@@ -28,14 +28,14 @@ Feature: User Story #502: Capture webpage screenshot on test failure
     When I save a browser screenshot
     Then an "ArgumentError" exception is raised
 
-
-  @test#3
-  Scenario: Try to save a webpage screenshot using an unsupported driver
-    Given I have a "rack_test" driver
-    And I visit "/"
-    When I save a browser screenshot
-    Then no exception is raised
-    But no screenshot was saved
+### Deprecated exception not raised
+#  @test#3
+#  Scenario: Try to save a webpage screenshot using an unsupported driver
+#    Given I have a "rack_test" driver
+#    And I visit "/"
+#    When I save a browser screenshot
+#    Then no exception is raised
+#    But no screenshot was saved
 
   @test#4
   Scenario: Attached saved screenshot in HTML Report when web error occurs
