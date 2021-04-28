@@ -29,18 +29,17 @@ Feature: Issue #4: CLI for project control: Project stub generation
     And the stderr should contain exactly "Error: The project 'my_project' already exists"
 
 
-  ### Comented for testing gem in a real project
-#  @test#138
-#  Scenario: Create a new qat web project and validate test runs
-#    Given I run `qat -n new_project -a web`
-#    And the exit status should be 0
-#    And a directory named "new_project" should exist
-#    When I cd to "new_project"
-#    And I set the environment variables to:
-#      | variable                | value                     |
-#      | CUCUMBER_FORMAT         |                           |
-#      | CUCUMBER_OPTS           |                           |
-#      | QAT_WEB_BROWSER_PROFILE | firefox_profile_netexport |
-#    And I run `rake qat:test:feature[web_example]`
-#    Then the output should contain "Loaded home page with URL:"
-#    And the exit status should be 0
+  @test#138
+  Scenario: Create a new qat web project and validate test runs
+    Given I run `qat -n new_project -a web`
+    And the exit status should be 0
+    And a directory named "new_project" should exist
+    When I cd to "new_project"
+    And I set the environment variables to:
+      | variable                | value                     |
+      | CUCUMBER_FORMAT         |                           |
+      | CUCUMBER_OPTS           |                           |
+      | QAT_WEB_BROWSER_PROFILE | firefox_profile_netexport |
+    And I run `rake qat:test:feature[web_example]`
+    Then the output should contain "Loaded home page with URL:"
+    And the exit status should be 0
