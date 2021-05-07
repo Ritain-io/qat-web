@@ -29,11 +29,9 @@ module QAT::Web
 
       ##Helper for reading file, in cucumber 6 this could be reverted to path directly
       def read_screenshot_file page, image_path
-        file            = page.save_page image_path
-        image_path_read = File.open file
-        image_path_read.read
+        file            = page.save_screenshot image_path
+        File.open file
       end
-
 
       def screenshot_filename
         File.basename(@screenshot_path)
