@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: QAT::Web::Page
+  
+    &mdash; Documentation by YARD 0.9.26
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "QAT::Web::Page";
+  relpath = '../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../_index.html">Index (P)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../QAT.html" title="QAT (module)">QAT</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Web.html" title="QAT::Web (module)">Web</a></span></span>
+     &raquo; 
+    <span class="title">Page</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: QAT::Web::Page
+  <span class="abstract note title">Abstract</span>
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">QAT::Web::Page</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  <dl>
+      <dt>Extended by:</dt>
+      <dd><span class='object_link'><a href="Elements.html" title="QAT::Web::Elements (module)">Elements</a></span>, <span class='object_link'><a href="Elements/Waiters.html" title="QAT::Web::Elements::Waiters (module)">Elements::Waiters</a></span>, <span class='object_link'><a href="Page/Validators.html" title="QAT::Web::Page::Validators (module)">Validators</a></span></dd>
+  </dl>
+  
+  
+  
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="Elements.html" title="QAT::Web::Elements (module)">Elements</a></span></dd>
+  </dl>
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/qat/web/page.rb<span class="defines">,<br />
+  lib/qat/web/page/validators.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <div class="note abstract">
+  <strong>This class is abstract.</strong>
+  <div class='inline'></div>
+</div>
+
+<p>Class to represent a Web Page. Works based on a DSL to write user friendly and powerful transition models. Two class methods are provided by this class, in order to allow the mapping of getters for page values, and also map page transitions. The use of Capybara::DSL in the implementation is recommended.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Sample Page Object implementation for <a href="http://localhost:8090/example">localhost:8090/example</a></p>
+</div></p>
+      
+      <pre class="example code"><code><span class='kw'>class</span> <span class='const'>ExamplePage</span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="../../QAT.html" title="QAT (module)">QAT</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Web.html" title="QAT::Web (module)">Web</a></span></span><span class='op'>::</span><span class='const'>Page</span>
+  <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="../../Capybara.html" title="Capybara (module)">Capybara</a></span></span><span class='op'>::</span><span class='const'>DSL</span>
+
+ <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
+   <span class='id identifier rubyid_visit'>visit</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>http://localhost:8090/example</span><span class='tstring_end'>&#39;</span></span>
+ <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_get_value'>get_value</span> <span class='symbol'>:title</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_find'>find</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>h1</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_action'>action</span> <span class='symbol'>:more_information</span><span class='comma'>,</span> <span class='label'>returns:</span> <span class='const'>ExampleInformationPage</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_click_link'>click_link</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>More information...</span><span class='tstring_end'>&#39;</span></span>
+    <span class='const'>ExampleInformationPage</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+
+<span class='id identifier rubyid_current_page'>current_page</span> <span class='op'>=</span> <span class='const'>ExamplePage</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+<span class='id identifier rubyid_current_page'>current_page</span><span class='period'>.</span><span class='id identifier rubyid_title'>title</span> <span class='comment'># &#39;Example Domain&#39;
+</span><span class='id identifier rubyid_current_page'>current_page</span> <span class='op'>=</span> <span class='id identifier rubyid_current_page'>current_page</span><span class='period'>.</span><span class='id identifier rubyid_more_information'>more_information</span> <span class='comment'># ExampleInformationPage instance</span></code></pre>
+    
+  </div>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="http://www.rubydoc.info/github/jnicklas/capybara/master/Capybara/DSL" target="_parent" title="Capybara::DSL">Capybara::DSL</a></li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="../../ProjectName/Web/Pages/Base.html" title="ProjectName::Web::Pages::Base (class)">ProjectName::Web::Pages::Base</a></span></p>
+</div>
+<h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Page/Validators.html" title="QAT::Web::Page::Validators (module)">Validators</a></span>
+    
+  
+    
+  
+</p>
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#action-class_method" title="action (class method)">.<strong>action</strong>(name, opts) { ... } &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Define a new method to represent a possible page transition to another page object controller.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#actions-class_method" title="actions (class method)">.<strong>actions</strong>  &#x21d2; Hash&lt;Symbol, Array&lt;QAT::Web::Page&gt;&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>List of page actions and respective transition return types.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#elements-class_method" title="elements (class method)">.<strong>elements</strong>  &#x21d2; HashWithIndifferentAccess </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the elements configuration.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#elements_config-class_method" title="elements_config (class method)">.<strong>elements_config</strong>(elements)  &#x21d2; HashWithIndifferentAccess </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Defines elements through a configuration hash.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#elements_file-class_method" title="elements_file (class method)">.<strong>elements_file</strong>(path)  &#x21d2; HashWithIndifferentAccess </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Loads elements configuration from a configuration file given a file path.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_value-class_method" title="get_value (class method)">.<strong>get_value</strong>(name) { ... } &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Define a new method to get a value from a page.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#values-class_method" title="values (class method)">.<strong>values</strong>  &#x21d2; Array&lt;Symbol&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>List of value getter functions.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#web_collection-class_method" title="web_collection (class method)">.<strong>web_collection</strong>(*args)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Defines a collection of web elements identified through a given name and configuration Auxiliary methods are also dynamically defined such as the element acessor, waiters and the configuration accessor and the second an optional <strong>configuration</strong>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#web_element-class_method" title="web_element (class method)">.<strong>web_element</strong>(*args)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Defines a web element accessor identified through the given name and configuration Auxiliary methods are also dynamically defined such as the element acessor, waiters and the configuration accessor and the second an optional <strong>configuration</strong>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#web_elements-class_method" title="web_elements (class method)">.<strong>web_elements</strong>(*elements)  &#x21d2; void </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Defines a list of web element accessors identified through the given names Configuration will be automatically loaded from the loaded configuration by element name Auxiliary methods are also dynamically defined such as the element acessor, waiters and the configuration accessor.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#elements-instance_method" title="#elements (instance method)">#<strong>elements</strong>  &#x21d2; HashWithIndifferentAccess </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the elements configuration.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Elements.html" title="QAT::Web::Elements (module)">Elements</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Elements.html#load_elements_file-instance_method" title="QAT::Web::Elements#load_elements_file (method)">load_elements_file</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Elements/Waiters.html" title="QAT::Web::Elements::Waiters (module)">Elements::Waiters</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Elements/Waiters.html#timeouts-instance_method" title="QAT::Web::Elements::Waiters#timeouts (method)">timeouts</a></span>, <span class='object_link'><a href="Elements/Waiters.html#timeouts_config-instance_method" title="QAT::Web::Elements::Waiters#timeouts_config (method)">timeouts_config</a></span>, <span class='object_link'><a href="Elements/Waiters.html#timeouts_file-instance_method" title="QAT::Web::Elements::Waiters#timeouts_file (method)">timeouts_file</a></span>, <span class='object_link'><a href="Elements/Waiters.html#wait_until-instance_method" title="QAT::Web::Elements::Waiters#wait_until (method)">wait_until</a></span>, <span class='object_link'><a href="Elements/Waiters.html#wait_until_not_present-instance_method" title="QAT::Web::Elements::Waiters#wait_until_not_present (method)">wait_until_not_present</a></span>, <span class='object_link'><a href="Elements/Waiters.html#wait_until_not_visible-instance_method" title="QAT::Web::Elements::Waiters#wait_until_not_visible (method)">wait_until_not_visible</a></span>, <span class='object_link'><a href="Elements/Waiters.html#wait_until_present-instance_method" title="QAT::Web::Elements::Waiters#wait_until_present (method)">wait_until_present</a></span>, <span class='object_link'><a href="Elements/Waiters.html#wait_until_visible-instance_method" title="QAT::Web::Elements::Waiters#wait_until_visible (method)">wait_until_visible</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Elements/Config.html" title="QAT::Web::Elements::Config (module)">Elements::Config</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Elements/Config.html#valid_config%3F-instance_method" title="QAT::Web::Elements::Config#valid_config? (method)">#valid_config?</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Elements/Selector.html" title="QAT::Web::Elements::Selector (module)">Elements::Selector</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Elements/Selector.html#selector-instance_method" title="QAT::Web::Elements::Selector#selector (method)">#selector</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Configuration.html" title="QAT::Web::Configuration (module)">Configuration</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Configuration.html#last_access-instance_method" title="QAT::Web::Configuration#last_access (method)">#last_access</a></span>, <span class='object_link'><a href="Configuration.html#last_access-class_method" title="QAT::Web::Configuration.last_access (method)">last_access</a></span>, <span class='object_link'><a href="Configuration.html#last_access=-class_method" title="QAT::Web::Configuration.last_access= (method)">last_access=</a></span>, <span class='object_link'><a href="Configuration.html#parse_configuration-instance_method" title="QAT::Web::Configuration#parse_configuration (method)">#parse_configuration</a></span></p>
+
+  
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="action-class_method">
+  
+    .<strong>action</strong>(name, opts) { ... } &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Define a new method to represent a possible page transition to another page object controller. A new instance method will be defined with the given name parameter, and with the block as the method&#39;s code to be executed. Additionally, all possible return types must be delacred in the :returns key in the opts parameter. All return types must be implementarions of QAT::Web::Page.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String/Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Name of the funcion to be defined</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>opts</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Options hash</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>opts</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:returns</span>
+          <span class="type">(<tt>Class/Array&lt;Class&gt;</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>Sublass or list of subclasses of QAT::Web::Page that can be returned by the method definition</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>Block of code to define the getter method. The block will only be executed then the function defined by “name” is called</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Yield Returns:</p>
+<ul class="yieldreturn">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="QAT::Web::Page (class)">QAT::Web::Page</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Instance of the destination page object</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qat/web/page.rb', line 85</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_action'>action</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
+
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>TypeError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>The opts parameter should be an Hash with a :returns key</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_opts'>opts</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Hash</span>
+
+  <span class='id identifier rubyid_return_value'>return_value</span> <span class='op'>=</span> <span class='id identifier rubyid_validate_return_value'>validate_return_value</span><span class='lparen'>(</span><span class='id identifier rubyid_opts'>opts</span><span class='lbracket'>[</span><span class='symbol'>:returns</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
+  <span class='id identifier rubyid_define_method'>define_method</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
+  <span class='ivar'>@actions</span>       <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@actions</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_return_value'>return_value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="actions-class_method">
+  
+    .<strong>actions</strong>  &#x21d2; <tt>Hash&lt;Symbol, Array&lt;<span class='object_link'><a href="" title="QAT::Web::Page (class)">QAT::Web::Page</a></span>&gt;&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns List of page actions and respective transition return types.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash&lt;Symbol, Array&lt;<span class='object_link'><a href="" title="QAT::Web::Page (class)">QAT::Web::Page</a></span>&gt;&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>List of page actions and respective transition return types</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+56
+57
+58
+59
+60
+61
+62
+63</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qat/web/page.rb', line 56</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_actions'>actions</span>
+  <span class='ivar'>@actions</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_superclass'>superclass</span><span class='period'>.</span><span class='id identifier rubyid_ancestors'>ancestors</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='const'><span class='object_link'><a href="../../QAT.html" title="QAT (module)">QAT</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Web.html" title="QAT::Web (module)">Web</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="QAT::Web::Page (class)">Page</a></span></span>
+    <span class='id identifier rubyid_superclass'>superclass</span><span class='period'>.</span><span class='id identifier rubyid_actions'>actions</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span> <span class='ivar'>@actions</span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@actions</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="elements-class_method">
+  
+    .<strong>elements</strong>  &#x21d2; <tt>HashWithIndifferentAccess</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the elements configuration</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>HashWithIndifferentAccess</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+116
+117
+118</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qat/web/page.rb', line 116</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_elements'>elements</span>
+  <span class='ivar'>@elements</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="elements_config-class_method">
+  
+    .<strong>elements_config</strong>(elements)  &#x21d2; <tt>HashWithIndifferentAccess</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Defines elements through a configuration hash</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>elements</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>elements configuration</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>HashWithIndifferentAccess</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+109
+110
+111
+112</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qat/web/page.rb', line 109</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_elements_config'>elements_config</span><span class='lparen'>(</span><span class='id identifier rubyid_elements'>elements</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_valid_config?'>valid_config?</span><span class='lparen'>(</span><span class='id identifier rubyid_elements'>elements</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>elements</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='ivar'>@elements</span> <span class='op'>=</span> <span class='const'>HashWithIndifferentAccess</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_elements'>elements</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="elements_file-class_method">
+  
+    .<strong>elements_file</strong>(path)  &#x21d2; <tt>HashWithIndifferentAccess</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Loads elements configuration from a configuration file given a file path</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>path</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>path to configuration file</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>HashWithIndifferentAccess</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+100
+101
+102
+103
+104</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qat/web/page.rb', line 100</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_elements_file'>elements_file</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span><span class='lparen'>(</span><span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>File &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_path'>path</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; does not exist!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
+  <span class='ivar'>@elements_file</span> <span class='op'>=</span> <span class='id identifier rubyid_path'>path</span>
+  <span class='id identifier rubyid_elements_config'>elements_config</span><span class='lparen'>(</span><span class='id identifier rubyid_load_elements_file'>load_elements_file</span><span class='lparen'>(</span><span class='ivar'>@elements_file</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_value-class_method">
+  
+    .<strong>get_value</strong>(name) { ... } &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Define a new method to get a value from a page. A new instance method will be defined with the given name parameter, and with the block as the method&#39;s code to be executed. The name of the method will be added to #values</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String/Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Name of the funcion to be defined</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>Block of code to define the getter method. The block will only be executed then the function defined by “name” is called</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+69
+70
+71
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qat/web/page.rb', line 69</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_value'>get_value</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
+  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
+  <span class='id identifier rubyid_define_method'>define_method</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
+  <span class='ivar'>@values</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@values</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_name'>name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="values-class_method">
+  
+    .<strong>values</strong>  &#x21d2; <tt>Array&lt;Symbol&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns List of value getter functions.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Symbol&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>List of value getter functions</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+45
+46
+47
+48
+49
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qat/web/page.rb', line 45</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_values'>values</span>
+  <span class='ivar'>@values</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_superclass'>superclass</span><span class='period'>.</span><span class='id identifier rubyid_ancestors'>ancestors</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='const'><span class='object_link'><a href="../../QAT.html" title="QAT (module)">QAT</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Web.html" title="QAT::Web (module)">Web</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="QAT::Web::Page (class)">Page</a></span></span>
+    <span class='ivar'>@values</span> <span class='op'>+</span> <span class='id identifier rubyid_superclass'>superclass</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@values</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="web_collection-class_method">
+  
+    .<strong>web_collection</strong>(*args)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Defines a collection of web elements identified through a given name and configuration Auxiliary methods are also dynamically defined such as the element acessor, waiters and the configuration accessor and the second an optional <strong>configuration</strong>. If none is given, it will be automatically loaded from the loaded configuration by the element name</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>args</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>One or two arguments are expected. The first argument is the element <strong>name</strong></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>Capybara::Node::Finders#all</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+146
+147
+148
+149</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qat/web/page.rb', line 146</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_web_collection'>web_collection</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_collection'>collection</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../QAT.html" title="QAT (module)">QAT</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Web.html" title="QAT::Web (module)">Web</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Elements.html" title="QAT::Web::Elements (module)">Elements</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Elements/Collection.html" title="QAT::Web::Elements::Collection (class)">Collection</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Elements/Base.html#initialize-instance_method" title="QAT::Web::Elements::Base#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_elements'>elements</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_define_web_element_methods'>define_web_element_methods</span><span class='lparen'>(</span><span class='id identifier rubyid_collection'>collection</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="web_element-class_method">
+  
+    .<strong>web_element</strong>(*args)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Defines a web element accessor identified through the given name and configuration Auxiliary methods are also dynamically defined such as the element acessor, waiters and the configuration accessor and the second an optional <strong>configuration</strong>. If none is given, it will be automatically loaded from the loaded configuration by the element name</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>args</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>One or two arguments are expected. The first argument is the element <strong>name</strong></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>Capybara::Node::Finders#find</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+126
+127
+128
+129</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qat/web/page.rb', line 126</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_web_element'>web_element</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_element'>element</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../QAT.html" title="QAT (module)">QAT</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Web.html" title="QAT::Web (module)">Web</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Elements.html" title="QAT::Web::Elements (module)">Elements</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Elements/Element.html" title="QAT::Web::Elements::Element (class)">Element</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Elements/Base.html#initialize-instance_method" title="QAT::Web::Elements::Base#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_elements'>elements</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_define_web_element_methods'>define_web_element_methods</span><span class='lparen'>(</span><span class='id identifier rubyid_element'>element</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="web_elements-class_method">
+  
+    .<strong>web_elements</strong>(*elements)  &#x21d2; <tt>void</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Defines a list of web element accessors identified through the given names Configuration will be automatically loaded from the loaded configuration by element name Auxiliary methods are also dynamically defined such as the element acessor, waiters and the configuration accessor</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>elements</span>
+      
+      
+        <span class='type'>(<tt>Array|Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>list of names to load elements</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>Capybara::Node::Finders#find</li>
+    
+  </ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+136
+137
+138</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qat/web/page.rb', line 136</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_web_elements'>web_elements</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_elements'>elements</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_elements'>elements</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_element'>element</span><span class='op'>|</span> <span class='id identifier rubyid_web_element'>web_element</span><span class='lparen'>(</span><span class='id identifier rubyid_element'>element</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="elements-instance_method">
+  
+    #<strong>elements</strong>  &#x21d2; <tt>HashWithIndifferentAccess</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the elements configuration</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>HashWithIndifferentAccess</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>1.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+154
+155
+156</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qat/web/page.rb', line 154</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_elements'>elements</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_elements'>elements</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Fri May  7 12:01:03 2021 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.26 (ruby-2.6.6).
+</div>
+
+    </div>
+  </body>
+</html>
