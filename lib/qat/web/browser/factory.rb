@@ -16,7 +16,7 @@ module QAT::Web
       def self.for browser
         browser = browser.to_sym
 
-        unless Capybara.drivers.has_key? browser
+        unless Capybara.drivers.key? browser
           log.error { "No driver with name #{browser} available" }
           log.debug { 'Available drivers are:' }
           log.debug { Capybara.drivers.keys }

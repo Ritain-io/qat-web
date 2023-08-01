@@ -44,16 +44,29 @@ module QAT::Web
         #@param options [String] screen definitions
         #@raise [QAT::Web::Screen::Loader::InvalidConfigurationError] When an incorrect configuration is found
         #@since 2.1.0
-        def load_screen(name, options)
-          log.debug { "Parsing #{name}" }
-          parsed_opts = options.dup rescue {}
-
-          raise InvalidConfigurationError.new "Configuration for screen #{name} is empty!" unless parsed_opts&.any?
-
-          parse_resolution name, parsed_opts
-
-          self.screens[name.to_sym] = parsed_opts
-          log.debug { "Parsed #{name}" }
+        def load_screen(name, options={})
+          if name.is_a?(Array)
+            log.debug { "Parsing #{name.first}" }
+            parsed_opts = name.last.dup rescue {}
+            
+            raise InvalidConfigurationError.new "Configuration for screen #{name} is empty!" unless parsed_opts&.any?
+            
+            parse_resolution name.first, parsed_opts
+            
+            self.screens[name.first.to_sym] = parsed_opts
+            log.debug { "Parsed #{name.first}" }
+          else
+            log.debug { "Parsing #{name.first}" }
+            parsed_opts = options.dup rescue {}
+            
+            raise InvalidConfigurationError.new "Configuration for screen #{name} is empty!" unless parsed_opts&.any?
+            
+            parse_resolution name, parsed_opts
+            
+            self.screens[name.to_sym] = parsed_opts
+            log.debug { "Parsed #{name}" }
+          end
+          
         end
 
         #List of known virtual screen definitions

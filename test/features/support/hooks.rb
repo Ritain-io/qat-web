@@ -95,7 +95,7 @@ module Hooks
     end
 
     def start_app
-      if File.exists? pid_filename
+      if File.exist? pid_filename
         begin
           Process.getpgid(File.read(pid_filename).to_i)
         rescue Errno::ESRCH
@@ -104,7 +104,7 @@ module Hooks
         end
       end
 
-      unless File.exists? pid_filename
+      unless File.exist? pid_filename
         log.info 'Sinatra server not running, starting a new one...'
 
         pid = nil
