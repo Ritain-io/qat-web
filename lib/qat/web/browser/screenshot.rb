@@ -18,7 +18,7 @@ module QAT::Web
       #@since 1.0.0
       def take_screenshot page = Capybara.current_session ,  path = screenshot_path
         log.info { "Saving screenshot to #{path}" }
-        raise ArgumentError.new "File #{path} already exists! Choose another filename" if ::File.exists? path
+        raise ArgumentError.new "File #{path} already exists! Choose another filename" if ::File.exist? path
         path = read_screenshot_file page, path
         log.info { "Screenshot available" }
         path
