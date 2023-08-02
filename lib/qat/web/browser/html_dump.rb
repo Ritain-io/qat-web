@@ -17,7 +17,7 @@ module QAT::Web
       #@return [String/NilClass] File path to where the HTML dump file was saved or nil if the browser doesn't support HTML dumps
       #@since 1.0.0
       def take_html_dump(page=Capybara.current_session, path=html_dump_path)
-        raise ArgumentError.new "File #{path} already exists! Choose another filename" if ::File.exists? path
+        raise ArgumentError.new "File #{path} already exists! Choose another filename" if ::File.exist? path
         log.info { "Saving HTML dump to #{path}" }
         path = read_html_dump page ,path
         log.info { "HTML dump available" }
