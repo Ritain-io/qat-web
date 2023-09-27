@@ -28,7 +28,7 @@ module QAT::Web
                 customized_profile = create_profile(driver, browser, properties, addons)
                 options.merge!(customized_profile) if customized_profile
               end
-              loaded_driver = Capybara.const_get(driver.capitalize)::Driver.new(app, options)
+              loaded_driver = Capybara.const_get(driver.capitalize)::Driver.new(app, **options)
               loaded_driver.browser
             end
 
