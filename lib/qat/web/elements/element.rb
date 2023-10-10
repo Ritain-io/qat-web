@@ -8,7 +8,14 @@ module QAT
         # Returns the element finder block
         # @return [Proc]
         def finder
-          proc { find(*@selector) }
+          selector = @selector
+          proc do
+            if selector.last.is_a?(Hash)
+              find(*selector[0..1], **selector.last)
+            else
+              find(*selector)
+            end
+          end
         end
       end
     end

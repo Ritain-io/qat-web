@@ -46,7 +46,7 @@ module QAT
         # @param timeout [Integer] maximum time to wait
         def wait_until_present(selector, timeout)
           type, value, options = build_selector(selector, { visible: false, wait: timeout })
-          has_selector?(type, value, options)
+          has_selector?(type, value, **options)
         end
 
         # Waits a maximum timeout time until an element is visible on page
@@ -54,7 +54,7 @@ module QAT
         # @param timeout [Integer] maximum time to wait
         def wait_until_visible(selector, timeout)
           type, value, options = build_selector(selector, { visible: true, wait: timeout })
-          has_selector?(type, value, options)
+          has_selector?(type, value, **options)
         end
 
         # Waits a maximum timeout time until an element is no longer present on page
@@ -62,7 +62,7 @@ module QAT
         # @param timeout [Integer] maximum time to wait
         def wait_until_not_present(selector, timeout)
           type, value, options = build_selector(selector, { wait: timeout })
-          has_no_selector?(type, value, options)
+          has_no_selector?(type, value, **options)
         end
 
         # Waits a maximum timeout time until an element is no longer visible on page
@@ -70,7 +70,7 @@ module QAT
         # @param timeout [Integer] maximum time to wait
         def wait_until_not_visible(selector, timeout)
           type, value, options = build_selector(selector, { visible: false, wait: timeout })
-          has_no_selector?(type, value, options)
+          has_no_selector?(type, value, **options)
         end
 
         # Generic wait method
