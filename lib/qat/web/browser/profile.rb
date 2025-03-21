@@ -45,7 +45,7 @@ module QAT::Web
         { prefs: profile.send(:prefs) }
       end
 
-      def selenium_profile(browser, properties)
+      def selenium_profile(browser)
         begin
           require 'selenium-webdriver'
         rescue LoadError => e
