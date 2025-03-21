@@ -26,6 +26,20 @@ module QAT::Web
         end
       end
 
+      #@since 9.0.5
+      def create_options (driver, browser, options)
+        return nil unless options && options.any?
+        begin
+          method("#{driver}_#{browser}_options".to_sym).call(options)
+        rescue NoMethodError => exception
+          if exception.message.match(/.*_.*_options/)
+            raise(HandlerNotImplemented, "An options handler for driver '#{driver.capitalize}' and/or '#{browser.capitalize}' does not exist at this moment!")
+          else
+            raise
+          end
+        end
+      end
+
       private
       def selenium_firefox_profile(properties, addons)
         profile = selenium_profile(:firefox, properties)
