@@ -42,7 +42,7 @@ module QAT::Web
 
       private
       def selenium_firefox_profile(properties, addons)
-        profile = selenium_profile(:firefox, properties)
+        profile = selenium_profile(:firefox)
 
         profile = load_firefox_addons(profile, addons)
 
@@ -52,7 +52,7 @@ module QAT::Web
       end
 
       def selenium_chrome_profile (properties, addons)
-        profile = selenium_profile(:chrome, properties)
+        profile = selenium_profile(:chrome)
 
         profile = set_profile(profile, properties)
 
@@ -95,6 +95,37 @@ module QAT::Web
 
 
         profile
+      end
+
+      def selenium_firefox_options(browser_options)
+        options = selenium_options(:firefox)
+        options = set_options(options, browser_options)
+        { options: options }
+      end
+
+      def selenium_chrome_options(browser_options)
+        options = selenium_options(:chrome)
+        options = set_options(options, browser_options)
+        { options: options }
+      end
+
+      def selenium_options(browser)
+        begin
+          require 'selenium-webdriver'
+        rescue LoadError => e
+          if e.message =~ /selenium-webdriver/
+            raise LoadError, "QAT-Web is unable to load `selenium-webdriver`, please install the gem and add `gem 'selenium-webdriver'` to your Gemfile if you are using bundler."
+          else
+            raise e
+          end
+        end
+        Selenium::WebDriver.const_get(browser.capitalize)::Options.new
+      end
+
+      def set_options(options, browser_options)
+        browser_options['args'].each { |arg| options.add_argument(arg) }
+        browser_options['preferences'].each { |name, value| options.add_preference(name, value) }
+        options
       end
 
       class HandlerNotImplemented < StandardError
