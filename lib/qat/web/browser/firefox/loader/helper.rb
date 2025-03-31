@@ -13,7 +13,7 @@ module QAT::Web
         # @param addons [String] Expected driver/browser addons
         # @param hooks [String] Cucumber hooks to use
         # @return [Capybara::RackTest::Driver||Capybara::Selenium::Driver]
-        def load_generic_driver(browser, controller, screen, driver, properties, addons, hooks)
+        def load_generic_driver(browser, controller, screen, driver, properties, browser_options, addons, hooks)
           Capybara.register_driver controller do |app|
             loaded_screen = QAT::Web::Screen::Factory.for screen
             loaded_driver = nil
@@ -27,6 +27,10 @@ module QAT::Web
               if properties
                 customized_profile = create_profile(driver, browser, properties, addons)
                 options.merge!(customized_profile) if customized_profile
+              end
+              if browser_options
+                customized_options = create_options(driver, browser, browser_options)
+                options.merge!(customized_options) if customized_options
               end
               loaded_driver = Capybara.const_get(driver.capitalize)::Driver.new(app, **options)
               loaded_driver.browser

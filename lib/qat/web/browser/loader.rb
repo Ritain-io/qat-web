@@ -44,13 +44,14 @@ module QAT::Web
         driver     = options['driver'] || mapping[browser]
         screen     = options['screen']
         properties = options['properties']
+        options    = options['options']
         addons     = options['addons']
         hooks      = options['hooks']
 
         if driver.to_sym == :poltergeist
           load_poltergeist_driver(browser, controller, screen)
         else
-          load_generic_driver(browser, controller, screen, driver, properties, addons, hooks)
+          load_generic_driver(browser, controller, screen, driver, properties, options, addons, hooks)
         end
       end
 
