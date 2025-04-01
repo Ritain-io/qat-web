@@ -123,8 +123,8 @@ module QAT::Web
       end
 
       def set_options(options, browser_options)
-        browser_options['args'].each { |arg| options.add_argument(arg) }
-        browser_options['preferences'].each { |name, value| options.add_preference(name, value) }
+        browser_options.fetch('args', [])&.each { |arg| options.add_argument(arg) }
+        browser_options.fetch('preferences', {})&.each { |name, value| options.add_preference(name, value) }
         options
       end
 
