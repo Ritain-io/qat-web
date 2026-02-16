@@ -61,10 +61,14 @@ module QAT::Web
 
 
     #Forwards all methods to current page.
-    def method_missing method, *args, &block
-      result = @current_page.send method, *args, &block
+    def method_missing(method, *args, **kwargs, &block)
+      result        = @current_page.send(method, *args, **kwargs, &block)
       @current_page = result if @current_page.class.actions.include? method
-      return result
+      result
+    end
+
+    def respond_to_missing?(method, include_private = false)
+      @current_page.respond_to?(method, include_private) || super
     end
 
   end
