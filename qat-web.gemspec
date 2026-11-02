@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name        = 'qat-web'
-  gem.version     = '9.0.7'
+  gem.version     = '9.1.0'
   gem.summary     = %q{QAT-Web is a browser controller for Web testing}
   gem.description = <<-DESC
   QAT-Web is a browser controller for Web testing, with support for various browsers and webdrivers.
@@ -23,20 +23,20 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = '~> 3.2'
 
   # Development dependencies
+  gem.add_development_dependency 'headless'
+  gem.add_development_dependency 'httparty'
   gem.add_development_dependency 'qat-cucumber', '~> 9.0'
   gem.add_development_dependency 'qat-devel', '~> 9.0'
-  gem.add_development_dependency 'headless'
+  gem.add_development_dependency 'selenium-webdriver'
   gem.add_development_dependency 'sinatra'
   gem.add_development_dependency 'syntax'
-  gem.add_development_dependency 'httparty'
-  gem.add_development_dependency 'selenium-webdriver'
   gem.add_development_dependency 'webrick'
 
   # GEM dependencies
-  gem.add_dependency 'qat-logger', '~> 9.0'
-  gem.add_dependency 'little-plugger'
-  gem.add_dependency 'capybara'
-  gem.add_dependency 'retriable'
   gem.add_dependency 'activesupport'
+  gem.add_dependency 'capybara'
   gem.add_dependency 'gemnasium-parser'
+  gem.add_dependency 'little-plugger'
+  gem.add_dependency 'qat-logger', '~> 9.0'
+  gem.add_dependency 'retriable'
 end
