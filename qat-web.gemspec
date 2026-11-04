@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   Includes various classes for easier planning and implementation of web interactions, using the Page Objects Pattern.
   DESC
   gem.email    = 'qatoolkit@readinessit.com'
-  gem.homepage = 'https://www.ritain.io'
+  gem.homepage = 'https://conkord.com'
 
   gem.metadata    = {
       'source_code_uri'   => 'https://github.com/Ritain-io/qat-web'
