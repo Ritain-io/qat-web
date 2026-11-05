@@ -15,48 +15,60 @@ module QAT::Web
 
       def create_profile (driver, browser, properties, addons)
         return nil unless properties && properties.any?
-        begin
-          method("#{driver}_#{browser}_profile".to_sym).call(properties, addons)
-        rescue NoMethodError => exception
-          if exception.message.match(/.*_.*_profile/)
-            raise(HandlerNotImplemented, "A profile handler for driver '#{driver.capitalize}' and/or '#{browser.capitalize}' does not exist at this moment!")
-          else
-            raise
-          end
+        handler = "#{driver}_#{browser}_profile"
+        unless respond_to?(handler, true)
+          raise(HandlerNotImplemented, "A profile handler for driver '#{driver.capitalize}' and/or '#{browser.capitalize}' does not exist at this moment!")
         end
+        method(handler).call(properties, addons)
       end
 
       #@since 9.0.5
       def create_options (driver, browser, options)
         return nil unless options && options.any?
-        begin
-          method("#{driver}_#{browser}_options".to_sym).call(options)
-        rescue NoMethodError => exception
-          if exception.message.match(/.*_.*_options/)
-            raise(HandlerNotImplemented, "An options handler for driver '#{driver.capitalize}' and/or '#{browser.capitalize}' does not exist at this moment!")
-          else
-            raise
-          end
+        handler = "#{driver}_#{browser}_options"
+        unless respond_to?(handler, true)
+          raise(HandlerNotImplemented, "An options handler for driver '#{driver.capitalize}' and/or '#{browser.capitalize}' does not exist at this moment!")
         end
+        method(handler).call(options)
       end
 
       private
-      def selenium_firefox_profile(properties, addons)
-        profile = selenium_profile(:firefox)
 
-        profile = load_firefox_addons(profile, addons)
-
-        profile = set_profile(profile, properties)
-
-        { profile: profile }
+      def selenium_chrome_options(browser_options)
+        options = selenium_options(:chrome)
+        options = set_options(options, browser_options)
+        { options: options }
       end
 
       def selenium_chrome_profile (properties, addons)
         profile = selenium_profile(:chrome)
-
         profile = set_profile(profile, properties)
-
         { prefs: profile.send(:prefs) }
+      end
+
+      def selenium_edge_options(browser_options)
+        options = selenium_options(:edge)
+        options = set_options(options, browser_options)
+        { options: options }
+      end
+
+      def selenium_edge_profile (properties, addons)
+        profile = selenium_profile(:edge)
+        profile = set_profile(profile, properties)
+        { prefs: profile.send(:prefs) }
+      end
+
+      def selenium_firefox_options(browser_options)
+        options = selenium_options(:firefox)
+        options = set_options(options, browser_options)
+        { options: options }
+      end
+
+      def selenium_firefox_profile(properties, addons)
+        profile = selenium_profile(:firefox)
+        profile = load_firefox_addons(profile, addons)
+        profile = set_profile(profile, properties)
+        { profile: profile }
       end
 
       def selenium_profile(browser)
@@ -95,18 +107,6 @@ module QAT::Web
 
 
         profile
-      end
-
-      def selenium_firefox_options(browser_options)
-        options = selenium_options(:firefox)
-        options = set_options(options, browser_options)
-        { options: options }
-      end
-
-      def selenium_chrome_options(browser_options)
-        options = selenium_options(:chrome)
-        options = set_options(options, browser_options)
-        { options: options }
       end
 
       def selenium_options(browser)
